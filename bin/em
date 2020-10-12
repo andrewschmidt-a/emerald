@@ -1,0 +1,40 @@
+#!/usr/bin/env ruby
+require "thor"
+require 'yaml'
+gem_path="#{File.expand_path("./gems")}"
+ENV["GEM_PATH"]=gem_path
+ENV["GEM_HOME"]=gem_path
+$emerald_spec = YAML.load(File.open("emerald.yml").read)
+
+
+class CLI < Thor
+  desc "install", "install dependencies"
+  option :p
+  def install()
+    install_command="bundler install"
+    if options[:p] then
+      install_command="bundler add #{options[:p]};"
+    end
+    system("gem install bundler:2.1.4; #{install_command}")
+  end
+
+  desc "init", "make emerald project"
+  def init(gem)
+    directory=File.expand_path("./#{gem}")
+    system("#{$init_gem_path}echo $GEM_PATH; gem install bundler:2.1.4; bundle gem #{gem} -e")
+    if File.readlines("#{directory}/.gitignore").grep(/\ngems/).size == 0
+      open("#{directory}/.gitignore", 'a') { |f|
+        f.puts "gems/\n"
+      }
+    end
+  end
+
+  desc "do", "run script"
+  def do(script)
+    script_string=$emerald_spec['scripts'][script]
+    puts(script_string)
+    system("#{$init_gem_path}#{script_string}")
+  end
+
+end
+CLI.start(ARGV)
