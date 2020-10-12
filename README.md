@@ -1,36 +1,34 @@
 # Emerald
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/emerald`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
-
+What is Emerald?
+1. A package manager? Well not really cause its not handling the dependency graph itself, just calling bundle commands...
+2. A virtual environment? Yes probably. It is designed to scope dependency installation to the project level.
+3. A statement about how much I love NPM? yes, also guilty. I found Ruby development ugly. I didnt like the package manager ecosystem and how I was expected to use it as a developer. You could consider this to be a description of what I think the interface should look like for a developer. 
+4. A personal learning project? most definitely! I am learning so much about the ruby ecosystem through this. And hey perhaps Ill actually tackle the dependency resolution part too!
 ## Installation
 
-Add this line to your application's Gemfile:
-
 ```ruby
-gem 'emerald'
+gem install emerald-package-manager
+```
+## Usage
+Add a file to the directory called `emerald.yml` with content like the following:
+```yaml
+gem_path: "gems"
+scripts:
+  start: ruby ./helloworld.ruby
 ```
 
-And then execute:
+Then to install the gems simply run:
+```bash
+em install
+```
+this will install all your dependencies in the `gems` folder in your local directory
 
-    $ bundle install
-
-Or install it yourself as:
-
-    $ gem install emerald
-
-## Usage
-
-TODO: Write usage instructions here
-
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+Then to run the script simply run 
+```bash
+em do start
+```
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/emerald.
+Bug reports and pull requests are welcome on GitHub at https://github.com/andrewschmidt-a/emerald.
 

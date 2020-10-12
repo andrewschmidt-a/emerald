@@ -1,8 +1,8 @@
 
 
 Gem::Specification.new do |spec|
-  spec.name          = "emerald"
-  spec.version       = "0.0.1"
+  spec.name          = "emerald-package-manager"
+  spec.version       = "0.0.2"
   spec.authors       = ["Andrew Schmidt"]
   spec.email         = ["Andrew.mkniger@gmail.com"]
 
@@ -10,8 +10,6 @@ Gem::Specification.new do |spec|
   spec.description   = "npm style package manager for ruby"
   spec.homepage      = "https://github.com/andrewschmidt-a/emerald"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.3.0")
-
-  spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = spec.homepage
